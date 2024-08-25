@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
 		}
 	};
 
-	const register = async (email, password, name = '', role = 'user') => {
+	const register = async (email, password, name = "", role = "user") => {
 		try {
 			const newUser = await registerUser(email, password, name, role);
 			setUser(newUser);
