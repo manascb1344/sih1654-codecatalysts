@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { Button } from './ui/button';
@@ -7,21 +7,10 @@ import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Menu } from 'lucide-react';
 
 const Navbar = () => {
-  const { user, logout, loading } = useAuth();
+  const { user, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-  useEffect(() => {
-    if (!loading) {
-      setIsLoaded(true);
-    }
-  }, [loading]);
-
-  if (!isLoaded) {
-    return null; 
-  }
 
   return (
     <header className="border-b border-solid border-b-[#f0f2f4] px-4 py-3 md:px-10">
@@ -70,7 +59,8 @@ const Navbar = () => {
           </nav>
           <div className="flex flex-col md:flex-row gap-2 mt-4 md:mt-0">
             {user ? (
-              <a className="text-[#111418] text-sm font-medium leading-normal" href="/" onClick={logout}>Logout</a>
+              <a className="text-[#111418] text-sm font-medium leading-normal" href="/" onClick={logout} >Logout</a>
+
             ) : (
               <>
                 <Button variant="ghost" asChild className="justify-start md:justify-center">
