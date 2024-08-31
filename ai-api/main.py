@@ -82,6 +82,19 @@ drdo_resume_analyzer = Agent(
     ),
 )
 
+panel_finder_agent = Agent(
+    role="Interview Panel Finder",
+    goal="Identify and select a panel of 3-5 experts from IIT Hyderabad and IIT Delhi institution to evaluate a specific candidate based on the resume analysis summary.",
+    tools=[web_rag_tool, web_rag_tool_s],
+    verbose=True,
+    backstory=(
+        "You are an expert in sourcing and selecting highly qualified individuals for academic and research panels. "
+        "Your task involves finding suitable experts from prestigious institutions like IIT-H to form an interview panel. "
+        "The panel is intended to evaluate a specific candidate based on the summary provided by the DRDO-focused Resume Analyzer Agent. "
+        "Ensure that the experts' expertise aligns with the research needs of DRDO and the candidate's profile."
+    ),
+)
+
 drdo_resume_analysis_task = Task(
     description=(
         "Conduct a comprehensive analysis of the provided resume with a focus on DRDO relevance. Specifically:"
@@ -114,19 +127,6 @@ drdo_resume_analysis_task = Task(
     output_file="interview_materials.md",
 )
 
-panel_finder_agent = Agent(
-    role="Interview Panel Finder",
-    goal="Identify and select a panel of 3-5 experts from IIT Hyderabad and IIT Delhi institution to evaluate a specific candidate based on the resume analysis summary.",
-    tools=[web_rag_tool, web_rag_tool_s],
-    verbose=True,
-    backstory=(
-        "You are an expert in sourcing and selecting highly qualified individuals for academic and research panels. "
-        "Your task involves finding suitable experts from prestigious institutions like IIT-H to form an interview panel. "
-        "The panel is intended to evaluate a specific candidate based on the summary provided by the DRDO-focused Resume Analyzer Agent. "
-        "Ensure that the experts' expertise aligns with the research needs of DRDO and the candidate's profile."
-    ),
-)
-
 panel_finder_task = Task(
     description=(
         "Based on the resume analysis summary of the specific candidate provided by the DRDO-focused Resume Analyzer Agent, perform the following:"
@@ -154,33 +154,12 @@ job_application_crew = Crew(
     verbose=True,
 )
 
-inputs = {
-    "areas": """Advanced Materials: Development of lightweight, high-strength materials for defense applications, including composites, ceramics, and special alloys.
-
-Artificial Intelligence and Robotics: Research in AI, machine learning, and autonomous systems for military applications, including unmanned vehicles and decision-support systems.
-
-Cybersecurity: Development of secure communication systems, encryption technologies, and protection against cyber threats.
-
-Electronic Warfare: Designing systems for electronic intelligence, jamming, and protection against electronic attacks.
-
-Naval Systems: Research and development of technologies for submarines, warships, sonar systems, and underwater weapons.
-
-Radar and Communication Systems: Development of advanced radar, communication, and surveillance systems.
-
-Life Sciences: Research in biomedical engineering, human physiology, and protective gear for soldiers operating in extreme environments.
-
-Nuclear, Biological, and Chemical Defence: Developing protective measures and detection systems for nuclear, biological, and chemical threats.
-
-Missiles and Weapons Systems: While well-known for missile development, DRDO also works on other weapons systems, including advanced munitions and directed energy weapons.
-
-Combat Vehicles and Armaments: Designing and developing tanks, armored vehicles, and other ground-based weaponry."""
-}
-
 app = Flask(__name__)
 
-@app.route('/analyze_resume', methods=['POST'])
+
+@app.route("/analyze_resume", methods=["POST"])
 def analyze_resume():
-    resume_url = request.json.get('resume_url')
+    resume_url = request.json.get("resume_url")
     if not resume_url:
         return jsonify({"error": "No resume URL provided"}), 400
 
@@ -190,7 +169,9 @@ def analyze_resume():
         return jsonify({"error": "Failed to download resume"}), 400
 
     # Create a temporary file for the resume
-    with tempfile.NamedTemporaryFile(mode='w+', suffix='.md', delete=False) as temp_resume:
+    with tempfile.NamedTemporaryFile(
+        mode="w+", suffix=".md", delete=False
+    ) as temp_resume:
         temp_resume.write(response.text)
         temp_resume_path = temp_resume.name
 
@@ -217,12 +198,27 @@ def analyze_resume():
     # Update the drdo_resume_analyzer agent with new tools
     drdo_resume_analyzer.tools = [read_resume, semantic_search_resume]
 
-    # Recreate the crew with updated agents
-    job_application_crew = Crew(
-        agents=[drdo_resume_analyzer, panel_finder_agent],
-        tasks=[drdo_resume_analysis_task, panel_finder_task],
-        verbose=True,
-    )
+    inputs = {
+        "areas": """Advanced Materials: Development of lightweight, high-strength materials for defense applications, including composites, ceramics, and special alloys.
+
+Artificial Intelligence and Robotics: Research in AI, machine learning, and autonomous systems for military applications, including unmanned vehicles and decision-support systems.
+
+Cybersecurity: Development of secure communication systems, encryption technologies, and protection against cyber threats.
+
+Electronic Warfare: Designing systems for electronic intelligence, jamming, and protection against electronic attacks.
+
+Naval Systems: Research and development of technologies for submarines, warships, sonar systems, and underwater weapons.
+
+Radar and Communication Systems: Development of advanced radar, communication, and surveillance systems.
+
+Life Sciences: Research in biomedical engineering, human physiology, and protective gear for soldiers operating in extreme environments.
+
+Nuclear, Biological, and Chemical Defence: Developing protective measures and detection systems for nuclear, biological, and chemical threats.
+
+Missiles and Weapons Systems: While well-known for missile development, DRDO also works on other weapons systems, including advanced munitions and directed energy weapons.
+
+Combat Vehicles and Armaments: Designing and developing tanks, armored vehicles, and other ground-based weaponry."""
+    }
 
     result = job_application_crew.kickoff(inputs=inputs)
 
@@ -233,12 +229,23 @@ def analyze_resume():
     except FileNotFoundError:
         return jsonify({"error": "Interview panel file not generated"}), 500
 
+    # Read the interview_materials.md file
+    try:
+        with open("interview_materials.md", "r") as f:
+            interview_materials_content = f.read()
+    except FileNotFoundError:
+        return jsonify({"error": "Interview materials file not generated"}), 500
+
     # Clean up the temporary file
     os.unlink(temp_resume_path)
 
-    return jsonify({"interview_panel": interview_panel_content})
+    return jsonify({
+        "interview_panel": interview_panel_content,
+        "interview_materials": interview_materials_content
+    })
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     port = 5000
     print(f"API running on port {port}")
     app.run(debug=True, port=port)

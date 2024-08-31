@@ -1,50 +1,19 @@
 **Panelist List:**
 
-1. **Smruti Ranjan Sarangi**, Professor, Hi-Tech Robotics and Autonomous Systems Chair, Ph.D. (University of Illinois, Urbana-Champaign)
-	* Research Areas: Computer Architecture, Operating Systems, Cybersecurity, Intelligent Systems
-	* Matching with Candidate's Profile and DRDO's Research Needs: His expertise in robotics and autonomous systems aligns with the candidate's background in AI and Robotics.
-2. **Sorav Bansal**, Professor and Microsoft Chair, Ph.D. (Stanford University)
-	* Research Areas: Operating Systems, Compilers
-	* Matching with Candidate's Profile and DRDO's Research Needs: His expertise in operating systems and compilers can help evaluate the candidate's skills in AI and Robotics.
-3. **Srikanta Bedathur**, Professor and DS Chair of Artificial Intelligence, Ph.D. (IISc., Bangalore)
-	* Research Areas: Data Management, Knowledge Discovery and Data Mining, Natural Language Processing
-	* Matching with Candidate's Profile and DRDO's Research Needs: His expertise in AI and data management can help evaluate the candidate's skills in AI and Robotics.
-4. **Subodh Kumar**, Professor, Uma-Puruskar-Liril Gupta Chair in Future Computing Technologies, Ph.D. (University of North Carolina at Chapel Hill)
-	* Research Areas: Computer Graphics, Virtual Reality, Geometry Processing, Parallel Computation, HPC
-	* Matching with Candidate's Profile and DRDO's Research Needs: His expertise in computer graphics and parallel computing can help evaluate the candidate's skills in AI and Robotics.
-5. **Tarun Mangla**, Assistant Professor, Ph.D. (Georgia Institute of Technology)
-	* Research Areas: Computer Network
-	* Matching with Candidate's Profile and DRDO's Research Needs: His expertise in computer networks can help evaluate the candidate's skills in AI and Robotics.
+1. **Smruti Ranjan Sarangi**: Professor and Hi-Tech Robotics and Autonomous Systems Chair at IIT Delhi. His expertise in computer architecture, operating systems, cybersecurity, and intelligent systems makes him an ideal panelist for evaluating the candidate's skills in Artificial Intelligence and Robotics.
+2. **Srikanta Bedathur**: Professor and DS Chair of Artificial Intelligence at IIT Delhi. His research interests in data management, knowledge discovery, and natural language processing align with the candidate's skills in Machine Learning and AI.
+3. **Vireshwar Kumar**: Assistant Professor and Amit and Deepali Sinha Chair in Cyber Security at IIT Delhi. His expertise in security and privacy in cyber-physical systems, applied cryptography, and adversarial machine learning makes him a suitable panelist for evaluating the candidate's skills in Cybersecurity.
+4. **Raghu Garg**: Professor at IIT Delhi. His research interests in machine learning, big data analytics, neuroimaging, and high-performance computing align with the candidate's skills in AI and Machine Learning.
+5. **Parag Singla**: Professor at IIT Delhi. His expertise in machine learning, social network analysis, and artificial intelligence makes him a suitable panelist for evaluating the candidate's skills in AI and Machine Learning.
 
 **Expert Matching:**
 
-These panelists have been selected based on their expertise in AI and Robotics, which aligns with the candidate's background and DRDO's research needs. Their expertise in computer architecture, operating systems, cybersecurity, data management, natural language processing, computer graphics, and parallel computing can help evaluate the candidate's skills in AI and Robotics.
+The selected panelists have expertise in Artificial Intelligence, Machine Learning, Robotics, Cybersecurity, and related areas, which align with the candidate's skills and experience. Their research interests and expertise make them well-suited to evaluate the candidate's qualifications and potential.
 
 **Recommendations:**
 
-1. Ensure that the panelists have a good understanding of the candidate's background and research areas.
-2. Provide the panelists with a clear understanding of the evaluation criteria and the expectations from the interview process.
-3. Encourage the panelists to ask questions and engage in a discussion with the candidate to get a better understanding of their skills and qualifications.
-4. Consider having a mix of senior and junior faculty members on the panel to provide a balanced evaluation of the candidate's skills and qualifications.
-
-**Detailed Report:**
-
-The following is a detailed report of the selected panelists and their expertise:
-
-1. **Smruti Ranjan Sarangi**:
-	* Research Areas: Computer Architecture, Operating Systems, Cybersecurity, Intelligent Systems
-	* Matching with Candidate's Profile and DRDO's Research Needs: His expertise in robotics and autonomous systems aligns with the candidate's background in AI and Robotics.
-2. **Sorav Bansal**:
-	* Research Areas: Operating Systems, Compilers
-	* Matching with Candidate's Profile and DRDO's Research Needs: His expertise in operating systems and compilers can help evaluate the candidate's skills in AI and Robotics.
-3. **Srikanta Bedathur**:
-	* Research Areas: Data Management, Knowledge Discovery and Data Mining, Natural Language Processing
-	* Matching with Candidate's Profile and DRDO's Research Needs: His expertise in AI and data management can help evaluate the candidate's skills in AI and Robotics.
-4. **Subodh Kumar**:
-	* Research Areas: Computer Graphics, Virtual Reality, Geometry Processing, Parallel Computation, HPC
-	* Matching with Candidate's Profile and DRDO's Research Needs: His expertise in computer graphics and parallel computing can help evaluate the candidate's skills in AI and Robotics.
-5. **Tarun Mangla**:
-	* Research Areas: Computer Network
-	* Matching with Candidate's Profile and DRDO's Research Needs: His expertise in computer networks can help evaluate the candidate's skills in AI and Robotics.
-
-The panelists have been selected based on their expertise in AI and Robotics, which aligns with the candidate's background and DRDO's research needs. Their expertise in computer architecture, operating systems, cybersecurity, data management, natural language processing, computer graphics, and parallel computing can help evaluate the candidate's skills in AI and Robotics.
+* The panel should consist of a mix of experts from IIT Delhi and IIT Hyderabad to provide a broader perspective.
+* The panel should be chaired by a senior faculty member with expertise in AI and Machine Learning to ensure that the evaluation process is rigorous and comprehensive.
+* The panel should also include experts from industry or research institutions to provide a practical perspective on the candidate's skills and experience.
+* The evaluation process should be based on a comprehensive review of the candidate's resume, research experience, and skills, as well as a thorough discussion of the candidate's qualifications and potential.
+* The panel should also consider the candidate's fit with the organization's culture and values, as well as their potential to contribute to the organization's research and development goals.
