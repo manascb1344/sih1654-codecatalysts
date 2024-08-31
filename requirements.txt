@@ -1,0 +1,7 @@
+duckduckgo-search
+crewai
+crewai_tools
+langchain-groq
+sentence-transformers
+langchain_huggingface
+
