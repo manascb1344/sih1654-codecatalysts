@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
+import { saveResumeToDatabase } from '../services/databaseService';
 
 const DRDOApplicationForm = () => {
   const [formData, setFormData] = useState({
@@ -47,11 +48,38 @@ const DRDOApplicationForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setSuccess(true);
-    // Reset form or keep fields if needed
+    setError('');
+    setSuccess(false);
+
+    try {
+      const resumeData = {
+        fullName: formData.name,
+        email: formData.email,
+        phoneNumber: formData.phone,
+        education: formData.education,
+        experience: formData.experience,
+        skills: formData.parsedResume 
+      };
+
+      const id = await saveResumeToDatabase(resumeData);
+      console.log('Resume saved with ID:', id);
+      setSuccess(true);
+      // Optionally reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        education: '',
+        experience: '',
+        resume: null,
+        parsedResume: ''
+      });
+    } catch (error) {
+      console.error('Failed to save resume:', error);
+      setError('Failed to submit application. Please try again.');
+    }
   };
 
   return (
@@ -147,13 +175,13 @@ const DRDOApplicationForm = () => {
                 </pre>
               </div>
             )}
+            <CardFooter>
+              <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+                Submit Application
+              </Button>
+            </CardFooter>
           </form>
         </CardContent>
-        <CardFooter>
-          <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
-            Submit Application
-          </Button>
-        </CardFooter>
         {success && (
           <Alert variant="success" className="bg-green-100 text-green-700 border-green-300 mt-4">
             <CheckCircle className="h-4 w-4" />

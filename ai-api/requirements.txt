@@ -1,0 +1,9 @@
+langchain_community
+crewai
+crewai_tools
+requests
+aiohttp
+tempfile
+fastapi
+pydantic
+uvicorn
