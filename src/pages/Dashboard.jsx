@@ -1,10 +1,9 @@
 import React from 'react'
+import { SidebarDemo } from './Sidebar'
 
 const Dashboard = () => {
 	return (
-		<div>
-			Dashboard
-		</div>
+		<SidebarDemo />
 	)
 }
 

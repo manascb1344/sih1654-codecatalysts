@@ -8,6 +8,7 @@ import NotFound from './pages/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import HomePage from './pages/Home';
+import { Footer } from '@react-login-page/page4';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      
     </>
   );
 }

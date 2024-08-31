@@ -57,7 +57,6 @@ export const loginUser = async (email, password) => {
 
 	if (await bcrypt.compare(password, user.password)) {
 		const { password, ...userWithoutPassword } = user;
-		// Simulate token generation
 		const token = "fake-jwt-token";
 		return { ...userWithoutPassword, token };
 	} else {
