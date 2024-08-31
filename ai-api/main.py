@@ -11,12 +11,8 @@ from crewai_tools import (
 )
 from crewai_tools import tool
 import requests
-import aiohttp
 import tempfile
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-import asyncio
-import uvicorn
+from flask import Flask, request, jsonify
 
 warnings.filterwarnings("ignore")
 
@@ -158,27 +154,25 @@ job_application_crew = Crew(
     verbose=True,
 )
 
-app = FastAPI()
+app = Flask(__name__)
 
-class ResumeRequest(BaseModel):
-    resume_url: str
 
-@app.post("/analyze_resume")
-async def analyze_resume(request: ResumeRequest):
-    resume_url = request.resume_url
+@app.route("/analyze_resume", methods=["POST"])
+def analyze_resume():
+    resume_url = request.json.get("resume_url")
     if not resume_url:
-        raise HTTPException(status_code=400, detail="No resume URL provided")
+        return jsonify({"error": "No resume URL provided"}), 400
 
     # Download the resume content
-    async with aiohttp.ClientSession() as session:
-        async with session.get(resume_url) as response:
-            if response.status != 200:
-                raise HTTPException(status_code=400, detail="Failed to download resume")
-            resume_content = await response.text()
+    response = requests.get(resume_url)
+    if response.status_code != 200:
+        return jsonify({"error": "Failed to download resume"}), 400
 
     # Create a temporary file for the resume
-    with tempfile.NamedTemporaryFile(mode="w+", suffix=".md", delete=False) as temp_resume:
-        temp_resume.write(resume_content)
+    with tempfile.NamedTemporaryFile(
+        mode="w+", suffix=".md", delete=False
+    ) as temp_resume:
+        temp_resume.write(response.text)
         temp_resume_path = temp_resume.name
 
     # Update tools to use the temporary resume file
@@ -226,32 +220,32 @@ Missiles and Weapons Systems: While well-known for missile development, DRDO als
 Combat Vehicles and Armaments: Designing and developing tanks, armored vehicles, and other ground-based weaponry."""
     }
 
-    # Run the crew asynchronously
-    result = await asyncio.to_thread(job_application_crew.kickoff, inputs=inputs)
+    result = job_application_crew.kickoff(inputs=inputs)
 
     # Read the interview_panel.md file
     try:
         with open("interview_panel.md", "r") as f:
             interview_panel_content = f.read()
     except FileNotFoundError:
-        raise HTTPException(status_code=500, detail="Interview panel file not generated")
+        return jsonify({"error": "Interview panel file not generated"}), 500
 
     # Read the interview_materials.md file
     try:
         with open("interview_materials.md", "r") as f:
             interview_materials_content = f.read()
     except FileNotFoundError:
-        raise HTTPException(status_code=500, detail="Interview materials file not generated")
+        return jsonify({"error": "Interview materials file not generated"}), 500
 
     # Clean up the temporary file
     os.unlink(temp_resume_path)
 
-    return {
+    return jsonify({
         "interview_panel": interview_panel_content,
         "interview_materials": interview_materials_content
-    }
+    })
+
 
 if __name__ == "__main__":
     port = 5000
     print(f"API running on port {port}")
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    app.run(debug=True, port=port)
