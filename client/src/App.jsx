@@ -35,7 +35,7 @@ function App() {
             <Route
               path="/admin/*"
               element={
-                <RoleBasedRoute requiredRole={["admin"]}>
+                <RoleBasedRoute requiredRoles={["admin"]}>
                   <AdminRoutes />
                 </RoleBasedRoute>
               }
@@ -45,7 +45,7 @@ function App() {
             <Route
               path="/expert/*"
               element={
-                <RoleBasedRoute requiredRole={["admin", "expert"]}>
+                <RoleBasedRoute requiredRoles={["admin", "expert"]}>
                   <ExpertRoutes />
                 </RoleBasedRoute>
               }
@@ -54,7 +54,7 @@ function App() {
             <Route
               path="/candidate/*"
               element={
-                <RoleBasedRoute requiredRole={["admin", "candidate"]}>
+                <RoleBasedRoute requiredRoles={["admin", "candidate"]}>
                   <CandidateRoutes />
                 </RoleBasedRoute>
               }
@@ -62,14 +62,14 @@ function App() {
             <Route
               path="/jobs/*"
               element={
-                <RoleBasedRoute requiredRoles={['admin', 'expert', 'candidate']}>
+                <RoleBasedRoute requiredRoless={['admin', 'expert', 'candidate']}>
                   <DRDOJobs />
                 </RoleBasedRoute>
               }
             />
             <Route path="/jobs/:id"
               element={
-                <RoleBasedRoute requiredRoles={['admin', 'expert', 'candidate']}>
+                <RoleBasedRoute requiredRoless={['admin', 'expert', 'candidate']}>
                   <JobDetail />
                 </RoleBasedRoute>
               }
@@ -77,7 +77,7 @@ function App() {
 
             <Route path="/form"
               element={
-                <RoleBasedRoute requiredRole={["admin", "expert"]}>
+                <RoleBasedRoute requiredRoles={["admin", "expert"]}>
                   <DRDOApplicationForm />
                 </RoleBasedRoute>
               }

@@ -71,7 +71,7 @@ const Navbar = () => {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
-                  <Link to="/profile">Profile</Link>
+                  <Link to={`/${user.role}/profile`}>Profile</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={handleSignout}>Logout</DropdownMenuItem>
               </DropdownMenuContent>

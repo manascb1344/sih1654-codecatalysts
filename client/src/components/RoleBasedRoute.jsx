@@ -12,7 +12,8 @@ const RoleBasedRoute = ({ requiredRoles, children }) => {
 		return <div>Loading...</div>;
 	}
 
-	return user && requiredRoles.includes(user.role) ? children : <Navigate to="/unauthorized" />;
+	// Ensure user is defined before checking role
+	return user && requiredRoles.includes(user?.role) ? children : <Navigate to="/unauthorized" />;
 };
 
 RoleBasedRoute.propTypes = {
