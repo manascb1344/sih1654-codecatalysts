@@ -109,13 +109,15 @@ export const interviewRecords = pgTable("interview_records", {
 	updatedAt: timestamp("updated_at").defaultNow(),
 });
 
+// const userRoles = enumType("user_roles", ["Admin", "Expert", "Candidate"]);
+
 export const users = pgTable(
 	"users",
 	{
 		id: serial("id").primaryKey(),
 		username: varchar("username", { length: 255 }).notNull(),
 		passwordHash: varchar("password_hash", { length: 255 }).notNull(),
-		role: varchar("role", { length: 50 }).notNull(),
+		role: varchar("role", { length: 20 }).notNull(), // ["Admin", "Expert", "Candidate"]
 		createdAt: timestamp("created_at").defaultNow(),
 		updatedAt: timestamp("updated_at").defaultNow(),
 	},

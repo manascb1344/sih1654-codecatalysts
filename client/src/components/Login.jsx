@@ -12,7 +12,7 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const { signin } = useAuth();
+  const { signin, user, loading } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -23,7 +23,13 @@ const Login = () => {
       const success = await signin(username, password);
       if (success) {
         console.log('Login successful');
-        navigate('/dashboard');
+        if (user) {
+          console.log('Login successful');
+          navigate(`/${user.role}`);
+        } else {
+          console.log('Login failed');
+          setError('Failed to login. Please check your credentials and try again.');
+        }
       } else {
         console.log('Login failed');
         setError('Failed to login. Please check your credentials and try again.');
