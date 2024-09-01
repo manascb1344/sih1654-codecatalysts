@@ -56,8 +56,9 @@ export const loginUser = async (email, password) => {
 	}
 
 	if (await bcrypt.compare(password, user.password)) {
-		const { ...userWithoutPassword } = user;
-		return userWithoutPassword;
+		const { password, ...userWithoutPassword } = user;
+		const token = "fake-jwt-token";
+		return { ...userWithoutPassword, token };
 	} else {
 		throw new Error("Invalid credentials");
 	}

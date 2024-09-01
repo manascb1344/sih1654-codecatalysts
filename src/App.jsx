@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import HomePage from './pages/Home';
 import Applicants from './pages/Applicants';
 import InterviewPanel from './components/InterviewPanel';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -20,9 +21,9 @@ function App() {
         <Route
           path="/dashboard"
           element={
-            // <ProtectedRoute>
+            <ProtectedRoute>
               <Dashboard />
-            // </ProtectedRoute>
+            </ProtectedRoute>
           }
         />
         <Route
@@ -36,23 +37,24 @@ function App() {
         <Route
           path="/applications"
           element={
-            // <ProtectedRoute>
+            <ProtectedRoute>
               <Applicants />
-            // </ProtectedRoute>
+            </ProtectedRoute>
           }
         />
         <Route
           path="/panelist"
           element={
-            // <ProtectedRoute>
+            <ProtectedRoute>
               <InterviewPanel />
-            // </ProtectedRoute>
+            </ProtectedRoute>
           }
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </>
   );
 }
