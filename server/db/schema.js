@@ -7,7 +7,6 @@ import {
 	timestamp,
 	real,
 	uniqueIndex,
-	enumType,
 } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
 
@@ -110,7 +109,7 @@ export const interviewRecords = pgTable("interview_records", {
 	updatedAt: timestamp("updated_at").defaultNow(),
 });
 
-const userRoles = enumType("user_roles", ["Admin", "Expert", "Candidate"]);
+// const userRoles = enumType("user_roles", ["Admin", "Expert", "Candidate"]);
 
 export const users = pgTable(
 	"users",
@@ -118,7 +117,7 @@ export const users = pgTable(
 		id: serial("id").primaryKey(),
 		username: varchar("username", { length: 255 }).notNull(),
 		passwordHash: varchar("password_hash", { length: 255 }).notNull(),
-		role: userRoles.notNull(), // Only Admin, Expert, or Candidate allowed
+		role: varchar("role", { length: 20 }).notNull(), // ["Admin", "Expert", "Candidate"]
 		createdAt: timestamp("created_at").defaultNow(),
 		updatedAt: timestamp("updated_at").defaultNow(),
 	},

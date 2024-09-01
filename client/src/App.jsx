@@ -14,6 +14,8 @@ import NotFound from './components/NotFound';
 import AdminRoutes from './Admin/AdminRoutes';
 import ExpertRoutes from './Expert/ExpertRoutes';
 import CandidateRoutes from './Candidate/CandidateRoutes';
+import Login from './components/Login';
+import Register from './components/Register';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
         <ErrorBoundary>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path='/register' element={<Register />} />
 
             {/* Admin Routes */}
             <Route

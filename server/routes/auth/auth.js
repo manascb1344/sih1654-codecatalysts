@@ -13,7 +13,7 @@ router.post("/signup", async (req, res) => {
 		const { username, password, role } = req.body;
 
 		// Enforce the role to be "candidate" or "expert"
-		if (role !== "candidate" && role !== "expert") {
+		if (role !== "Candidate" && role !== "Expert") {
 			return res
 				.status(403)
 				.json({ error: "You can only sign up as a candidate or expert." });
