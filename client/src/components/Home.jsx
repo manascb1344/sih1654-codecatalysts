@@ -1,159 +1,322 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Navigation, Pagination } from 'swiper/modules';
+import { motion } from 'framer-motion';
+import { FaCogs, FaUsers, FaCheckCircle, FaFlag } from 'react-icons/fa';
 
-function HomePage() {
+const HeroSection = () => {
   return (
-    <div className="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden" style={{ fontFamily: "'Public Sans', 'Noto Sans', sans-serif" }}>
-      <div className="layout-container flex h-full grow flex-col">
-        <div className="px-40 flex flex-1 justify-center py-5">
-          <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
-            <div className="@container">
-              <div className="@[480px]:p-4">
-                <div
-                  className="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-4 rounded-2xl"
-                  style={{ backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url('https://upload.wikimedia.org/wikipedia/commons/9/9b/Drdo-delhi-1-1-1675666412.webp')" }}
-                >
-                  <div className="flex flex-col gap-2 text-center">
-                    <h1 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
-                      Revolutionizing Interview Board Selection for DRDO
-                    </h1>
-                    <h2 className="text-white text-lg font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
-                      AI-driven expert matching system for interview boards
-                    </h2>
-                  </div>
-                  <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#1466b8] text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]">
-                    <span className="truncate">Get started</span>
-                  </button>
-                </div>
-              </div>
+    <div className="relative h-screen bg-black text-white overflow-hidden">
+      <div className="absolute right-0 top-0 w-3/5 h-full">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGe82l9rNr2mOmwhD2GdGhCnMrV0z5iYSEFg&s"
+          alt="DRDO Building"
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      <div className="absolute inset-0 bg-gradient-to-r from-black via-black to-transparent">
+        <div className="container mx-auto h-full flex flex-col justify-center px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <div className="flex flex-col gap-8">
+              <h1 className="text-5xl sm:text-7xl font-bold leading-tight">
+                Expert Relevance Matching for DRDO Interview Boards
+              </h1>
+              <p className="text-xl sm:text-2xl text-gray-300 mb-8">
+                Our solution efficiently matches the profiles of subject experts
+                with interview board subjects and candidates' areas of
+                expertise. By leveraging advanced algorithms, we provide a
+                matching score for each expert, ensuring optimal selection for
+                interview boards and enhancing the recruitment and assessment
+                process at DRDO.
+              </p>
             </div>
-            <div className="flex flex-col gap-10 px-4 py-10 @container">
-              <div className="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-0">
-                <div className="flex flex-1 gap-3 rounded-md border border-[#dce0e5] bg</svg>-white p-4 flex-col">
-                  <div className="text-[#111418]" data-icon="UserGear" data-size="24px" data-weight="regular">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                      <path d="M144,157.68a68,68,0,1,0-71.9,0c-20.65,6.76-39.23,19.39-54.17,37.17a8,8,0,1,0,12.24,10.3C50.25,181.19,77.91,168,108,168s57.75,13.19,77.87,37.15a8,8,0,0,0,12.26-10.3C183.18,177.07,164.6,164.44,144,157.68ZM56,100a52,52,0,1,1,52,52A52.06,52.06,0,0,1,56,100Zm188.25,43.07-4.66-2.69a23.6,23.6,0,0,0,0-8.76l4.66-2.69a8,8,0,0,0-8-13.86l-4.67,2.7a23.92,23.92,0,0,0-7.58-4.39V108a8,8,0,0,0-16,0v5.38a23.92,23.92,0,0,0-7.58,4.39l-4.67-2.7a8,8,0,1,0-8,13.86l4.66,2.69a23.6,23.6,0,0,0,0,8.76l-4.66,2.69a8,8,0,0,0,8,13.86l4.67-2.7a23.92,23.92,0,0,0,7.58,4.39V164a8,8,0,0,0,16,0v-5.38a23.92,23.92,0,0,0,7.58-4.39l4.67,2.7a7.92,7.92,0,0,0,4,1.07,8,8,0,0,0,4-14.93ZM208,136a8,8,0,1,1,8,8A8,8,0,0,1,208,136Z"></path>
-                    </svg>
-                  </div>
-                  <div className="flex flex-col gap-1">
-                    <h2 className="text-[#111418] text-base font-bold leading-tight">Profile Management</h2>
-                    <p className="text-[#637588] text-sm font-normal leading-normal">Create and manage your profile</p>
-                  </div>
-                </div>
-                <div className="flex flex-1 gap-3 rounded-md border border-[#dce0e5] bg-white p-4 flex-col">
-                  <div className="text-[#111418]" data-icon="ListChecks" data-size="24px" data-weight="regular">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                      <path d="M224,128a8,8,0,0,1-8,8H128a8,8,0,0,1,0-16h88A8,8,0,0,1,224,128ZM128,72h88a8,8,0,0,0,0-16H128a8,8,0,0,0,0,16Zm88,112H128a8,8,0,0,0,0,16h88a8,8,0,0,0,0-16ZM82.34,42.34,56,68.69,45.66,58.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32ZM82.34,98.34,56,124.69,45.66,114.34a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32ZM74.34,170.34,56,188.69,45.66,178.34a8,8,0,1,0-11.32,11.32l16,16a8,8,0,0,0,11.32,0l32-32a8,8,0,0,0-11.32-11.32Z"></path>
-                    </svg>
-                  </div>
-                  <div className="flex flex-col gap-1">
-                    <h2 className="text-[#111418] text-base font-bold leading-tight">Application Status</h2>
-                    <p className="text-[#637588] text-sm font-normal leading-normal">Check your application status</p>
-                  </div>
-                </div>
-                <div className="flex flex-1 gap-3 rounded-md border border-[#dce0e5] bg-white p-4 flex-col">
-                  <div className="text-[#111418]" data-icon="CalendarCheck" data-size="24px" data-weight="regular">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                      <path d="M216,32H200V24a8,8,0,0,0-16,0v8H72V24a8,8,0,0,0-16,0v8H40A24.07,24.07,0,0,0,16,56V216a24.07,24.07,0,0,0,24,24H216a24.07,24.07,0,0,0,24-24V56A24.07,24.07,0,0,0,216,32ZM40,48H56v8a8,8,0,0,0,16,0V48H184v8a8,8,0,0,0,16,0V48h16a8,8,0,0,1,8,8v48H32V56A8,8,0,0,1,40,48ZM216,224H40a8,8,0,0,1-8-8V120H224V216A8,8,0,0,1,216,224Zm-35.72-67.72L152,184.49l-12.28-12.28a8,8,0,0,0-11.31,11.32l18,18a8,8,0,0,0,11.31,0l32-32a8,8,0,0,0-11.32-11.31Z"></path>
-                    </svg>
-                  </div>
-                  <div className="flex flex-col gap-1">
-                    <h2 className="text-[#111418] text-base font-bold leading-tight">Interview Schedule</h2>
-                    <p className="text-[#637588] text-sm font-normal leading-normal">View your interview dates</p>
-                  </div>
-                </div>
-                <div className="flex flex-1 gap-3 rounded-md border border-[#dce0e5] bg-white p-4 flex-col">
-                  <div className="text-[#111418]" data-icon="Comments" data-size="24px" data-weight="regular">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                      <path d="M216,32H40A24.07,24.07,0,0,0,16,56V176a24.07,24.07,0,0,0,24,24H88v24a8,8,0,0,0,13.66,5.66L136,200h80a24.07,24.07,0,0,0,24-24V56A24.07,24.07,0,0,0,216,32ZM224,176a8,8,0,0,1-8,8H136a8,8,0,0,0-5.66,2.34L96,220.69V192a8,8,0,0,0-8-8H40a8,8,0,0,1-8-8V56a8,8,0,0,1,8-8H216a8,8,0,0,1,8,8Z"></path>
-                    </svg>
-                  </div>
-                  <div className="flex flex-col gap-1">
-                    <h2 className="text-[#111418] text-base font-bold leading-tight">Support</h2>
-                    <p className="text-[#637588] text-sm font-normal leading-normal">Get help and support</p>
-                  </div>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 gap-4 @[840px]:grid-cols-[repeat(2,1fr)]">
-                <div className="rounded-md border border-[#dce0e5] bg-white p-4">
-                  <h2 className="text-[#111418] text-lg font-bold leading-tight">How the AI System Works</h2>
-                  <p className="text-[#637588] text-sm font-normal leading-normal">
-                    Our AI-driven system automatically matches interview board members with the relevant expertise for each candidate, ensuring the most suitable interviewers are selected based on candidate profiles and interview subjects.
-                  </p>
-                </div>
-                <div className="rounded-md border border-[#dce0e5] bg-white p-4">
-                  <h2 className="text-[#111418] text-lg font-bold leading-tight">Steps to Apply</h2>
-                  <p className="text-[#637588] text-sm font-normal leading-normal">
-                    Create a profile, check application status, view interview schedule, and get support all in one place.
-                  </p>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 gap-4 @[840px]:grid-cols-[repeat(2,1fr)]">
-                <div className="rounded-md border border-[#dce0e5] bg-white p-4">
-                  <h2 className="text-[#111418] text-lg font-bold leading-tight">Profile Management</h2>
-                  <p className="text-[#637588] text-sm font-normal leading-normal">
-                    Keep your profile updated with the latest information to ensure accurate matching with interview boards.
-                  </p>
-                </div>
-                <div className="rounded-md border border-[#dce0e5] bg-white p-4">
-                  <h2 className="text-[#111418] text-lg font-bold leading-tight">Interview Schedule</h2>
-                  <p className="text-[#637588] text-sm font-normal leading-normal">
-                    Stay on top of your interview dates with our easy-to-use scheduling feature.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="py-10 px-4 @container">
-              <div className="text-center">
-                <h2 className="text-[#111418] text-2xl font-bold leading-tight @[480px]:text-3xl">Sign Up for Early Access</h2>
-                <p className="text-[#637588] text-sm font-normal leading-normal @[480px]:text-base">
-                  Get started today and be among the first to experience our AI-powered interview board selection system.
-                </p>
-                <div className="flex justify-center gap-4 mt-6">
-                  <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#1466b8] text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]">
-                    <span className="truncate">Get started</span>
-                  </button>
-                  <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#f0f2f4] text-[#111418] text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]">
-                    <span className="truncate">Learn more</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="rounded-t-[40px] px-4 bg-[#f0f2f4] @container mt-14">
-              <div className="mx-auto max-w-[1024px] py-10 @[840px]:py-[60px] flex flex-col gap-5 @[840px]:gap-6">
-                <div className="grid grid-cols-1 gap-4 @[840px]:grid-cols-[repeat(2,1fr)]">
-                  <div className="rounded-md border border-[#dce0e5] bg-white p-4">
-                    <h2 className="text-[#111418] text-lg font-bold leading-tight">How We Ensure Data Security</h2>
-                    <p className="text-[#637588] text-sm font-normal leading-normal">
-                      We employ the latest security measures to ensure your personal data remains protected and confidential.
-                    </p>
-                  </div>
-                  <div className="rounded-md border border-[#dce0e5] bg-white p-4">
-                    <h2 className="text-[#111418] text-lg font-bold leading-tight">About Our Technology</h2>
-                    <p className="text-[#637588] text-sm font-normal leading-normal">
-                      Our cutting-edge AI technology ensures the most accurate matching of interview board members with candidate expertise.
-                    </p>
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 gap-4 @[840px]:grid-cols-[repeat(2,1fr)]">
-                  <div className="rounded-md border border-[#dce0e5] bg-white p-4">
-                    <h2 className="text-[#111418] text-lg font-bold leading-tight">Support and Resources</h2>
-                    <p className="text-[#637588] text-sm font-normal leading-normal">
-                      Access our comprehensive support and resource center for any questions or assistance.
-                    </p>
-                  </div>
-                  <div className="rounded-md border border-[#dce0e5] bg-white p-4">
-                    <h2 className="text-[#111418] text-lg font-bold leading-tight">Stay Updated</h2>
-                    <p className="text-[#637588] text-sm font-normal leading-normal">
-                      Sign up for our newsletter to receive the latest updates and news about our AI-driven interview board selection system.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Link to="/dashboard" className="group relative inline-block">
+              <div className="absolute inset-0 border-4 border-white translate-x-2 translate-y-2 transition-transform duration-200 group-hover:translate-x-0 group-hover:translate-y-0"></div>
+              <button className="relative bg-[#39FF14] text-2xl text-black px-8 py-4 font-bold group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-200">
+                Explore Solution
+              </button>
+            </Link>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default HomePage;
+const LatestSection = () => {
+  const schedules = [
+    {
+      text: 'Interview Schedule',
+      lastUpdated: '22 Aug, 2024 17:40 hrs.',
+    },
+    {
+      text: ' Technical Screening Status - Biotechnology/ Biochemistry',
+      lastUpdated: '21 Aug, 2024 12:05 hrs.',
+    },
+    {
+      text: 'Technical Screening Status - Physiology',
+      lastUpdated: '20 Aug, 2024 17:45 hrs.',
+    },
+    {
+      text: 'Administrative Screening Status - Aerospace Engineering',
+      lastUpdated: '13 Aug, 2024 11:45 hrs.',
+    },
+  ];
+  return (
+    <div className="bg-black text-white py-12 px-12">
+      <div className="flex space-x-16 container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-start items-start">
+          <h2 className="mb-8 flex items-center">
+            <div className="w-12 h-px bg-white mr-4"></div>
+            <span className="text-4xl font-bold uppercase tracking-wider text-white">
+              LATEST
+            </span>
+          </h2>
+        </div>
+        <div className="flex-1 bg-black text-white p-6 rounded-lg shadow-lg">
+          <ul className="space-y-2">
+            {schedules.map((schedule, index) => (
+              <Link
+                to="https://rac.gov.in/"
+                target="_blank"
+                key={index}
+                className="flex justify-between items-center border-b-2 text-2xl hover:scale-105 transition-all duration-300"
+              >
+                <span
+                  className={`${index % 2 === 0 ? 'text-red-400' : 'text-white'
+                    }`}
+                >
+                  {schedule.text}
+                </span>
+                <span className="text-sm text-gray-600">
+                  Last updated on : {schedule.lastUpdated}
+                </span>
+              </Link>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const HowItWorks = () => {
+  const steps = [
+    {
+      icon: <FaCogs className="text-5xl mb-4" aria-label="Cogs icon" />,
+      title: 'Process Overview',
+      description:
+        'The RAC under DRDO conducts interviews for recruitment and sponsorship.',
+    },
+    {
+      icon: <FaUsers className="text-5xl mb-4" aria-label="Users icon" />,
+      title: 'Expert Selection',
+      description:
+        'Experts are selected from DRDO, industry, and academia for interview boards.',
+    },
+    {
+      icon: (
+        <FaCheckCircle
+          className="text-5xl mb-4"
+          aria-label="Check circle icon"
+        />
+      ),
+      title: 'Matching Scores',
+      description:
+        'Our solution provides matching and relevancy scores for expert suitability.',
+    },
+    {
+      icon: <FaFlag className="text-5xl mb-4" aria-label="Flag icon" />,
+      title: 'Final Selection',
+      description:
+        'The most suitable experts are chosen for the interview boards.',
+    },
+  ];
+
+  return (
+    <section className="bg-black text-white py-12 px-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-start items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center mb-8"
+          >
+            <div className="w-12 h-px bg-white mr-4"></div>
+            <span className="text-4xl font-bold uppercase tracking-wider text-white">
+              HOW IT WORKS
+            </span>
+          </motion.div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {steps.map((step, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 * (index + 1) }}
+              className="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+            >
+              <div className="p-6 flex flex-col items-center text-center">
+                <div className="text-green-400 mb-4">{step.icon}</div>
+                <h4 className="text-xl font-semibold mb-3 text-green-300">
+                  {step.title}
+                </h4>
+                <p className="text-gray-400">{step.description}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Services = () => {
+  const services = [
+    {
+      title: 'Expert Matching for Interviews',
+      description: 'Find the best experts based on domain and candidate needs.',
+      imageUrl:
+        'https://cdn4.vectorstock.com/i/1000x1000/81/78/single-one-line-drawing-interview-man-vector-46008178.jpg',
+    },
+    {
+      title: 'Relevancy Scoring for Board Selection',
+      description:
+        'Score experts based on their relevancy to the interview board.',
+      imageUrl:
+        'https://cdn4.vectorstock.com/i/1000x1000/81/78/single-one-line-drawing-interview-man-vector-46008178.jpg',
+    },
+    {
+      title: "Profile Scoring Based on Candidates' Expertise",
+      description: 'Match experts to candidates by scoring their profiles.',
+      imageUrl:
+        'https://cdn4.vectorstock.com/i/1000x1000/81/78/single-one-line-drawing-interview-man-vector-46008178.jpg',
+    },
+    {
+      title: 'Advanced Analytics',
+      description: 'Gain insights with advanced data analytics and reporting.',
+      imageUrl:
+        'https://cdn4.vectorstock.com/i/1000x1000/81/78/single-one-line-drawing-interview-man-vector-46008178.jpg',
+    },
+    {
+      title: 'Custom Interview Processes',
+      description: 'Tailor interview processes to specific needs.',
+      imageUrl:
+        'https://cdn4.vectorstock.com/i/1000x1000/81/78/single-one-line-drawing-interview-man-vector-46008178.jpg',
+    },
+  ];
+
+  return (
+    <section className="bg-black text-white py-12 px-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-start items-start mb-8">
+          <h2 className="flex items-center">
+            <div className="w-12 h-px bg-white mr-4"></div>
+            <span className="text-4xl font-bold uppercase tracking-wider text-white">
+              OUR SERVICES
+            </span>
+          </h2>
+        </div>
+        <div className="relative">
+          <Swiper
+            modules={[Navigation, Pagination]}
+            spaceBetween={24}
+            slidesPerView={1}
+            navigation={{
+              nextEl: '.swiper-button-next-custom',
+              prevEl: '.swiper-button-prev-custom',
+            }}
+            pagination={{ clickable: true }}
+            breakpoints={{
+              640: { slidesPerView: 2 },
+              768: { slidesPerView: 3 },
+              1024: { slidesPerView: 4 },
+            }}
+            className="pb-12"
+          >
+            {services.map((service, index) => (
+              <SwiperSlide key={index} className="h-auto">
+                <div className="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col h-full transition-transform duration-300 ease-in-out transform border border-gray-700 hover:border-green-500">
+                  <img
+                    src={service.imageUrl}
+                    alt={service.title}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                      <h3 className="text-xl font-semibold mb-3 text-green-400">
+                        {service.title}
+                      </h3>
+                      <p className="text-gray-300 text-sm mb-4">
+                        {service.description}
+                      </p>
+                    </div>
+                    <div className="flex justify-center items-center">
+                      <Link
+                        to="/register"
+                        className="group relative inline-block self-start mt-4"
+                      >
+                        <div className="absolute inset-0 border-2 border-white translate-x-1 translate-y-1 "></div>
+                        <button className="relative bg-red-600 text-white px-6 py-2 font-bold group-hover:translate-x-1 group-hover:translate-y-1 transition-transform duration-200">
+                          Learn More
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          <div className="swiper-button-prev-custom absolute top-1/2 left-0 transform -translate-y-1/2 z-10">
+            <button className="w-10 h-10 bg-white rounded-full flex justify-center items-center shadow-lg">
+              <svg
+                className="w-5 h-5 text-black"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+          </div>
+          <div className="swiper-button-next-custom absolute top-1/2 right-0 transform -translate-y-1/2 z-10">
+            <button className="w-10 h-10 bg-white rounded-full flex justify-center items-center shadow-lg">
+              <svg
+                className="w-5 h-5 text-black"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Home = () => {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <HeroSection />
+      <LatestSection />
+      <Services />
+      <HowItWorks />
+    </motion.div>
+  );
+};
+
+export default Home;
