@@ -35,7 +35,7 @@ function App() {
             <Route
               path="/admin/*"
               element={
-                <RoleBasedRoute requiredRole="admin">
+                <RoleBasedRoute requiredRole={["admin"]}>
                   <AdminRoutes />
                 </RoleBasedRoute>
               }
@@ -45,16 +45,8 @@ function App() {
             <Route
               path="/expert/*"
               element={
-                <RoleBasedRoute requiredRole="expert">
+                <RoleBasedRoute requiredRole={["admin", "expert"]}>
                   <ExpertRoutes />
-                </RoleBasedRoute>
-              }
-            />
-            <Route
-              path="/jobs/*"
-              element={
-                <RoleBasedRoute requiredRole="expert">
-                  <DRDOJobs />
                 </RoleBasedRoute>
               }
             />
@@ -62,26 +54,34 @@ function App() {
             <Route
               path="/candidate/*"
               element={
-                <RoleBasedRoute requiredRole="candidate">
+                <RoleBasedRoute requiredRole={["admin", "candidate"]}>
                   <CandidateRoutes />
                 </RoleBasedRoute>
               }
             />
-             <Route path="/jobs/:id" 
+            <Route
+              path="/jobs/*"
               element={
-                <RoleBasedRoute requiredRole="expert">
+                <RoleBasedRoute requiredRoles={['admin', 'expert', 'candidate']}>
+                  <DRDOJobs />
+                </RoleBasedRoute>
+              }
+            />
+            <Route path="/jobs/:id"
+              element={
+                <RoleBasedRoute requiredRoles={['admin', 'expert', 'candidate']}>
                   <JobDetail />
-                </RoleBasedRoute> 
+                </RoleBasedRoute>
               }
-              />
+            />
 
-              <Route path="/form" 
+            <Route path="/form"
               element={
-                <RoleBasedRoute requiredRole="expert">
-                  <DRDOApplicationForm/>
-                </RoleBasedRoute> 
+                <RoleBasedRoute requiredRole={["admin", "expert"]}>
+                  <DRDOApplicationForm />
+                </RoleBasedRoute>
               }
-              />
+            />
 
             <Route path="/unauthorized" element={<Unauthorized />} />
             <Route path="*" element={<NotFound />} />
