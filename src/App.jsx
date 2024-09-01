@@ -8,6 +8,8 @@ import NotFound from './pages/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import HomePage from './pages/Home';
+import Applicants from './pages/Applicants';
+import InterviewPanel from './components/InterviewPanel';
 
 function App() {
   return (
@@ -18,9 +20,9 @@ function App() {
         <Route
           path="/dashboard"
           element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <Dashboard />
-            </ProtectedRoute>
+            // </ProtectedRoute>
           }
         />
         <Route
@@ -29,6 +31,22 @@ function App() {
             <ProtectedRoute>
               <Profile />
             </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/applications"
+          element={
+            // <ProtectedRoute>
+              <Applicants />
+            // </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/panelist"
+          element={
+            // <ProtectedRoute>
+              <InterviewPanel />
+            // </ProtectedRoute>
           }
         />
         <Route path="/login" element={<Login />} />
