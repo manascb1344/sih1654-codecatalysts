@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,7 +19,7 @@ const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [role, setRole] = useState('Candidate'); // Default role
+  const [role, setRole] = useState('candidate');
   const [error, setError] = useState('');
   const { signup, signin, user, loading } = useAuth();
   const navigate = useNavigate();
@@ -32,16 +32,11 @@ const Register = () => {
       return;
     }
     try {
-      const success = await signup(username, password, role);
-      if (success) {
+      console.log(role);
+      console.log("Username", username, "Password", password, "role", role);
+      const signupSuccess = await signup(username, password, role);
+      if (signupSuccess) {
         await signin(username, password); // Perform login procedure
-        if (user) {
-          navigate(`/${user.role}`);
-        }
-        else {
-          console.log('Register failed');
-          setError('Failed to Register. Please check your credentials and try again.');
-        }
       } else {
         setError('Failed to register. Please try again.');
       }
@@ -50,6 +45,12 @@ const Register = () => {
       setError('An unexpected error occurred. Please try again.');
     }
   };
+
+  useEffect(() => {
+    if (!loading && user) {
+      navigate(`/${user.role.toLowerCase()}`);
+    }
+  }, [loading, user, navigate, role]);
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-50">
@@ -106,8 +107,8 @@ const Register = () => {
                   <SelectValue placeholder="Select a role" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="Candidate">Candidate</SelectItem>
-                  <SelectItem value="Expert">Expert</SelectItem>
+                  <SelectItem value="candidate">Candidate</SelectItem>
+                  <SelectItem value="expert">Expert</SelectItem>
                 </SelectContent>
               </Select>
             </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,7 +9,7 @@ import { AlertCircle } from "lucide-react";
 import { useAuth } from '@/hooks/useAuth';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const { signin, user, loading } = useAuth();
@@ -20,16 +20,9 @@ const Login = () => {
     setError('');
     try {
       console.log('Submitting login form...');
-      const success = await signin(username, password);
+      const success = await signin(email, password);
       if (success) {
         console.log('Login successful');
-        if (user) {
-          console.log('Login successful');
-          navigate(`/${user.role}`);
-        } else {
-          console.log('Login failed');
-          setError('Failed to login. Please check your credentials and try again.');
-        }
       } else {
         console.log('Login failed');
         setError('Failed to login. Please check your credentials and try again.');
@@ -40,6 +33,12 @@ const Login = () => {
     }
   };
 
+  useEffect(() => {
+    if (!loading && user) {
+      navigate(`/${user.role.toLowerCase()}`);
+    }
+  }, [loading, user, navigate]);
+
   console.log('Rendering Login component...');
 
   return (
@@ -47,7 +46,7 @@ const Login = () => {
       <Card className="w-full max-w-md shadow-md bg-white">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold text-gray-900">Login</CardTitle>
-          <CardDescription className="text-gray-600">Enter your username and password to access your account</CardDescription>
+          <CardDescription className="text-gray-600">Enter your email and password to access your account</CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
@@ -59,15 +58,15 @@ const Login = () => {
               </Alert>
             )}
             <div className="space-y-2">
-              <Label htmlFor="username" className="text-gray-700">Username</Label>
+              <Label htmlFor="email" className="text-gray-700">email</Label>
               <Input
-                id="username"
+                id="email"
                 type="text"
-                placeholder="Enter your username"
-                value={username}
+                placeholder="Enter your email"
+                value={email}
                 onChange={(e) => {
-                  console.log('Username input changed:', e.target.value);
-                  setUsername(e.target.value);
+                  console.log('email input changed:', e.target.value);
+                  setEmail(e.target.value);
                 }}
                 required
                 className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"

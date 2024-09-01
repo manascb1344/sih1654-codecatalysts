@@ -15,6 +15,13 @@
       "when": 1725204746889,
       "tag": "0001_military_rick_jones",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1725217882233,
+      "tag": "0002_magenta_agent_brand",
+      "breakpoints": true
     }
   ]
 }

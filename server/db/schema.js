@@ -115,7 +115,7 @@ export const users = pgTable(
 	"users",
 	{
 		id: serial("id").primaryKey(),
-		username: varchar("username", { length: 255 }).notNull(),
+		email: varchar("email", { length: 255 }).notNull(),
 		passwordHash: varchar("password_hash", { length: 255 }).notNull(),
 		role: varchar("role", { length: 20 }).notNull(), // ["Admin", "Expert", "Candidate"]
 		createdAt: timestamp("created_at").defaultNow(),
@@ -123,7 +123,7 @@ export const users = pgTable(
 	},
 	(table) => {
 		return {
-			userUsernameIdx: uniqueIndex("user_username_idx").on(table.username),
+			useremailIdx: uniqueIndex("user_email_idx").on(table.email),
 		};
 	}
 );

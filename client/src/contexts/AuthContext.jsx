@@ -15,24 +15,28 @@ export const AuthProvider = ({ children }) => {
 	useEffect(() => {
 		const token = localStorage.getItem('token');
 		const storedUser = localStorage.getItem('user');
+
 		if (token && storedUser) {
 			setUser(JSON.parse(storedUser));
 		}
+
 		setLoading(false);
 	}, []);
 
 	const backendUrl = "http://localhost:5000";
 
-	const signin = async (username, password) => {
+	const signin = async (email, password) => {
 		try {
 			const response = await fetch(`${backendUrl}/api/auth/signin`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ username, password }),
+				body: JSON.stringify({ email, password }),
 			});
+
 			const data = await response.json();
 
 			if (response.ok) {
+				console.log('User data Auth Context Signin:', data);
 				localStorage.setItem('token', data.token);
 				const userData = { id: data.userId, role: data.role };
 				localStorage.setItem('user', JSON.stringify(userData));
@@ -47,14 +51,21 @@ export const AuthProvider = ({ children }) => {
 		}
 	};
 
-	const signup = async (username, password, role) => {
+	const signup = async (email, password, role) => {
 		try {
 			const response = await fetch(`${backendUrl}/api/auth/signup`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ username, password, role }),
+				body: JSON.stringify({ email, password, role }),
 			});
+
 			if (response.ok) {
+				const data = await response.json();
+				const userData = { id: data.userId, role: data.role };
+				console.log('User data Auth Context Signup:', userData);
+				localStorage.setItem('token', data.token);
+				localStorage.setItem('user', JSON.stringify(userData));
+				setUser(userData);
 				return true;
 			} else {
 				const data = await response.json();
@@ -74,7 +85,7 @@ export const AuthProvider = ({ children }) => {
 
 	return (
 		<AuthContext.Provider value={{ user, signin, signup, signout, loading }}>
-			{children}
+			{!loading && children}
 		</AuthContext.Provider>
 	);
 };
