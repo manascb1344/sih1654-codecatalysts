@@ -1,3 +1,4 @@
+// components/ProtectedRoute.jsx
 import React, { useEffect, useState } from 'react';
 import { verifyToken } from '../services/api'; // Ensure this API call is correctly implemented.
 import { Navigate } from 'react-router-dom';

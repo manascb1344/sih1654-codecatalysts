@@ -1,6 +1,7 @@
+// services/api.js
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api"; // Adjust this URL to match your server
+const API_URL = "http://localhost:5000/api";
 
 const api = axios.create({
 	baseURL: API_URL,
@@ -13,7 +14,7 @@ export const signup = (userData) => api.post("/auth/signup", userData);
 export const signin = (credentials) => api.post("/auth/signin", credentials);
 export const verifyToken = async () => {
 	try {
-		const token = localStorage.getItem("token"); // or however you store the token
+		const token = localStorage.getItem("token");
 		if (!token) throw new Error("No token found");
 
 		const response = await api.get("/auth/verify-token", {
@@ -26,6 +27,5 @@ export const verifyToken = async () => {
 		return error.response || { status: 500 };
 	}
 };
-// Add more API calls as needed
 
 export default api;
