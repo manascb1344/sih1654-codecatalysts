@@ -9,21 +9,25 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const { login } = useAuth();
+  const { signin } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     try {
-      await login(email, password);
-      navigate('/dashboard');
+      const success = await signin(username, password);
+      if (success) {
+        navigate('/dashboard');
+      } else {
+        setError('Failed to login. Please check your credentials and try again.');
+      }
     } catch (error) {
       console.error('Failed to login', error);
-      setError('Failed to login. Please check your credentials and try again.');
+      setError('An unexpected error occurred. Please try again.');
     }
   };
 
@@ -32,7 +36,7 @@ const Login = () => {
       <Card className="w-full max-w-md shadow-md bg-white">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold text-gray-900">Login</CardTitle>
-          <CardDescription className="text-gray-600">Enter your email and password to access your account</CardDescription>
+          <CardDescription className="text-gray-600">Enter your username and password to access your account</CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
@@ -44,13 +48,13 @@ const Login = () => {
               </Alert>
             )}
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-gray-700">Email</Label>
+              <Label htmlFor="username" className="text-gray-700">Username</Label>
               <Input
-                id="email"
-                type="email"
-                placeholder="m@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                id="username"
+                type="text"
+                placeholder="Enter your username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
                 className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
               />

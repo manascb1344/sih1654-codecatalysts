@@ -9,11 +9,12 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 
 const Register = () => {
-	const [email, setEmail] = useState('');
+	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
+	const [role, setRole] = useState('expert'); // Default role
 	const [error, setError] = useState('');
-	const { register } = useAuth();
+	const { signup } = useAuth();
 	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
@@ -24,11 +25,15 @@ const Register = () => {
 			return;
 		}
 		try {
-			await register(email, password);
-			navigate('/dashboard');
+			const success = await signup(username, password, role);
+			if (success) {
+				navigate('/login');
+			} else {
+				setError('Failed to register. Please try again.');
+			}
 		} catch (error) {
 			console.error('Failed to register', error);
-			setError('Failed to register. Please try again.');
+			setError('An unexpected error occurred. Please try again.');
 		}
 	};
 
@@ -54,8 +59,8 @@ const Register = () => {
 								id="email"
 								type="email"
 								placeholder="m@example.com"
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
+								value={username}
+								onChange={(e) => setUsername(e.target.value)}
 								required
 							/>
 						</div>
