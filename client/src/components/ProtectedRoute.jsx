@@ -1,19 +1,35 @@
-import PropTypes from "prop-types";
-import { Navigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import React, { useEffect, useState } from 'react';
+import { verifyToken } from '../services/api'; // Ensure this API call is correctly implemented.
+import { Navigate } from 'react-router-dom';
 
-const ProtectedRoute = ({ children }) => {
-	const { user } = useAuth();
+function ProtectedRoute({ children }) {
+	const [isAuthenticated, setIsAuthenticated] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 
-	if (!user) {
-		return <Navigate to="/login" />;
+	useEffect(() => {
+		const checkAuth = async () => {
+			try {
+				const response = await verifyToken();
+				if (response.status === 200) {
+					setIsAuthenticated(true);
+				} else {
+					setIsAuthenticated(false);
+				}
+			} catch (error) {
+				setIsAuthenticated(false);
+			} finally {
+				setIsLoading(false);
+			}
+		};
+
+		checkAuth();
+	}, []);
+
+	if (isLoading) {
+		return <div>Loading...</div>;
 	}
 
-	return children;
-};
-
-ProtectedRoute.propTypes = {
-	children: PropTypes.node.isRequired,
-};
+	return isAuthenticated ? children : <Navigate to="/login" />;
+}
 
 export default ProtectedRoute;
