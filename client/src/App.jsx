@@ -11,12 +11,14 @@ import Login from './components/Login';
 import Register from './components/Register';
 import NotFound from './components/NotFound';
 import Footer from './components/Footer';
+import ErrorBoundary from './ErrorBoundary';
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Navbar />
+        <ErrorBoundary>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route
@@ -55,6 +57,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </ErrorBoundary>
         <Footer />
       </BrowserRouter>
     </>
