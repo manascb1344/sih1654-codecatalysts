@@ -12,6 +12,8 @@ import Register from './components/Register';
 import NotFound from './components/NotFound';
 import Footer from './components/Footer';
 import ErrorBoundary from './ErrorBoundary';
+import DRDOApplicationForm from './components/Application';
+
 
 function App() {
   return (
@@ -50,6 +52,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <InterviewPanelPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/form"
+            element={
+              <ProtectedRoute>
+                <DRDOApplicationForm />
               </ProtectedRoute>
             }
           />
