@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
+import { useAuth } from '@/hooks/useAuth';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -19,10 +19,13 @@ const Login = () => {
     e.preventDefault();
     setError('');
     try {
+      console.log('Submitting login form...');
       const success = await signin(username, password);
       if (success) {
+        console.log('Login successful');
         navigate('/dashboard');
       } else {
+        console.log('Login failed');
         setError('Failed to login. Please check your credentials and try again.');
       }
     } catch (error) {
@@ -30,6 +33,8 @@ const Login = () => {
       setError('An unexpected error occurred. Please try again.');
     }
   };
+
+  console.log('Rendering Login component...');
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-50">
@@ -54,7 +59,10 @@ const Login = () => {
                 type="text"
                 placeholder="Enter your username"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => {
+                  console.log('Username input changed:', e.target.value);
+                  setUsername(e.target.value);
+                }}
                 required
                 className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
               />
@@ -65,7 +73,10 @@ const Login = () => {
                 id="password"
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  console.log('Password input changed:', e.target.value);
+                  setPassword(e.target.value);
+                }}
                 required
                 className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
               />
@@ -74,7 +85,7 @@ const Login = () => {
           <CardFooter className="flex flex-col space-y-4">
             <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white">Login</Button>
             <p className="text-sm text-center text-gray-600">
-              Don't have an account?{' '}
+              {"Don't have an account?"}{' '}
               <Link to="/register" className="text-blue-600 hover:underline">
                 Register
               </Link>
