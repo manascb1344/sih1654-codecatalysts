@@ -16,6 +16,9 @@ import ExpertRoutes from './Expert/ExpertRoutes';
 import CandidateRoutes from './Candidate/CandidateRoutes';
 import Login from './components/Login';
 import Register from './components/Register';
+import DRDOJobs from './components/JobPosting';
+import JobDetail from './components/JobDetails';
+import DRDOApplicationForm from './components/Application';
 
 function App() {
   return (
@@ -47,7 +50,14 @@ function App() {
                 </RoleBasedRoute>
               }
             />
-
+            <Route
+              path="/jobs/*"
+              element={
+                <RoleBasedRoute requiredRole="expert">
+                  <DRDOJobs />
+                </RoleBasedRoute>
+              }
+            />
             {/* Candidate Routes */}
             <Route
               path="/candidate/*"
@@ -57,6 +67,21 @@ function App() {
                 </RoleBasedRoute>
               }
             />
+             <Route path="/jobs/:id" 
+              element={
+                <RoleBasedRoute requiredRole="expert">
+                  <JobDetail />
+                </RoleBasedRoute> 
+              }
+              />
+
+              <Route path="/form" 
+              element={
+                <RoleBasedRoute requiredRole="expert">
+                  <DRDOApplicationForm/>
+                </RoleBasedRoute> 
+              }
+              />
 
             <Route path="/unauthorized" element={<Unauthorized />} />
             <Route path="*" element={<NotFound />} />

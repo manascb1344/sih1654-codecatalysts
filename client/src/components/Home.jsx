@@ -35,7 +35,7 @@ const HeroSection = () => {
                 process at DRDO.
               </p>
             </div>
-            <Link to="/dashboard" className="group relative inline-block">
+            <Link to="/jobs" className="group relative inline-block">
               <div className="absolute inset-0 border-4 border-white translate-x-2 translate-y-2 transition-transform duration-200 group-hover:translate-x-0 group-hover:translate-y-0"></div>
               <button className="relative bg-[#39FF14] text-2xl text-black px-8 py-4 font-bold group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-200">
                 Explore Solution
