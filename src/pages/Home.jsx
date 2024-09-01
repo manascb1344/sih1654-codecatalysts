@@ -24,20 +24,21 @@ const HeroSection = () => {
           <div className="max-w-3xl">
             <div className="flex flex-col gap-8">
               <h1 className="text-5xl sm:text-7xl font-bold leading-tight">
-                INTERVIEW Board Selection for DRDO
+                Expert Relevance Matching for DRDO Interview Boards
               </h1>
               <p className="text-xl sm:text-2xl text-gray-300 mb-8">
-                Interview Board Selection for DRDO Interview Board Selection for
-                DRDO Interview Board Selection for DRDO Interview Board
-                Selection for DRDO Interview Board Selection for DRDO Interview
-                Board Selection for DRDO Interview Board Selection for DRDO
-                Interview Board Selection for DRDO
+                Our solution efficiently matches the profiles of subject experts
+                with interview board subjects and candidates' areas of
+                expertise. By leveraging advanced algorithms, we provide a
+                matching score for each expert, ensuring optimal selection for
+                interview boards and enhancing the recruitment and assessment
+                process at DRDO.
               </p>
             </div>
             <Link to="/dashboard" className="group relative inline-block">
               <div className="absolute inset-0 border-4 border-white translate-x-2 translate-y-2 transition-transform duration-200 group-hover:translate-x-0 group-hover:translate-y-0"></div>
-              <button className="relative bg-[#39FF14] text-2xl text-black px-8 py-4 font-bold group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-200  ">
-                Guide me
+              <button className="relative bg-[#39FF14] text-2xl text-black px-8 py-4 font-bold group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-200">
+                Explore Solution
               </button>
             </Link>
           </div>
@@ -305,12 +306,17 @@ const Services = () => {
 
 const Home = () => {
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <HeroSection />
       <LatestSection />
       <Services />
       <HowItWorks />
-    </div>
+    </motion.div>
   );
 };
 
