@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
 import {
   DropdownMenu,
@@ -14,10 +14,16 @@ import { Menu } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 
 const Navbar = () => {
-  const { user, logout, loading } = useAuth();
+  const { user, signout, loading } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate(); // Hook for navigation
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const handleSignout = () => {
+    signout(); // Perform signout
+    navigate('/'); // Redirect to homepage
+  };
 
   if (loading) {
     return null;
@@ -67,7 +73,7 @@ const Navbar = () => {
                 <DropdownMenuItem asChild>
                   <Link to="/profile">Profile</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
+                <DropdownMenuItem onClick={handleSignout}>Logout</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
@@ -109,7 +115,7 @@ const Navbar = () => {
             Contact us
           </a>
           {user ? (
-            <a className="text-white" href="/" onClick={logout}>
+            <a className="text-white" href="/" onClick={handleSignout}>
               Logout
             </a>
           ) : (
