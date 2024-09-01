@@ -7,9 +7,7 @@
 		"dev": "vite",
 		"build": "vite build",
 		"lint": "eslint .",
-		"preview": "vite preview",
-		"generate": "drizzle-kit generate",
-		"migrate": "drizzle-kit migrate"
+		"preview": "vite preview"
 	},
 	"dependencies": {
 		"@neondatabase/serverless": "^0.9.4",
@@ -29,7 +27,6 @@
 		"bcryptjs": "^2.4.3",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.1",
-		"drizzle-orm": "^0.33.0",
 		"framer-motion": "^11.3.31",
 		"lucide-react": "^0.436.0",
 		"pg": "^8.12.0",
@@ -51,7 +48,6 @@
 		"@vitejs/plugin-react": "^4.3.1",
 		"@vitejs/plugin-react-swc": "^3.5.0",
 		"autoprefixer": "^10.4.20",
-		"drizzle-kit": "^0.24.1",
 		"eslint": "^9.9.0",
 		"eslint-plugin-react": "^7.35.0",
 		"eslint-plugin-react-hooks": "^5.1.0-rc.0",
