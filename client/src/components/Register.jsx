@@ -14,7 +14,7 @@ const Register = () => {
 	const [confirmPassword, setConfirmPassword] = useState('');
 	const [role, setRole] = useState('expert'); // Default role
 	const [error, setError] = useState('');
-	const { signup } = useAuth();
+	const { signup, signin } = useAuth();
 	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
@@ -27,7 +27,8 @@ const Register = () => {
 		try {
 			const success = await signup(username, password, role);
 			if (success) {
-				navigate('/login');
+				await signin(username, password); // Perform login procedure
+				navigate('/dashboard'); // Redirect to dashboard after successful login
 			} else {
 				setError('Failed to register. Please try again.');
 			}
