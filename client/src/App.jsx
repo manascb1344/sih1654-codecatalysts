@@ -60,7 +60,7 @@ function App() {
               }
             />
             <Route
-              path="/jobs/*"
+              path="/jobs"
               element={
                 <RoleBasedRoute requiredRoless={['admin', 'expert', 'candidate']}>
                   <DRDOJobs />

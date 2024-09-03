@@ -24,6 +24,7 @@
 		"@radix-ui/react-slot": "^1.1.0",
 		"@radix-ui/react-switch": "^1.1.0",
 		"@react-login-page/page4": "^1.0.4",
+		"@rollup/rollup-win32-x64-msvc": "^4.21.2",
 		"@uploadthing/react": "^6.7.2",
 		"@vercel/analytics": "^1.3.1",
 		"axios": "^1.7.7",

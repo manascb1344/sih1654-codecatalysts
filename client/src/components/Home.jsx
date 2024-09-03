@@ -6,42 +6,75 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
 import { motion } from 'framer-motion';
-import { FaCogs, FaUsers, FaCheckCircle, FaFlag } from 'react-icons/fa';
+import { FaCogs, FaUsers, FaCheckCircle, FaFlag } from 'react-icons/fa';;
+// import { FaRocket, FaUserTie, FaChartLine } from 'react-icons/fa';
+import { FaRocket, FaUserTie, FaChartLine, FaClock } from 'react-icons/fa';
 
 const HeroSection = () => {
   return (
-    <div className="relative h-screen bg-black text-white overflow-hidden">
-      <div className="absolute right-0 top-0 w-3/5 h-full">
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGe82l9rNr2mOmwhD2GdGhCnMrV0z5iYSEFg&s"
-          alt="DRDO Building"
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-black to-transparent">
-        <div className="container mx-auto h-full flex flex-col justify-center px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <div className="flex flex-col gap-8">
-              <h1 className="text-5xl sm:text-7xl font-bold leading-tight">
-                Expert Relevance Matching for DRDO Interview Boards
-              </h1>
-              <p className="text-xl sm:text-2xl text-gray-300 mb-8">
-                Our solution efficiently matches the profiles of subject experts
-                with interview board subjects and candidates' areas of
-                expertise. By leveraging advanced algorithms, we provide a
-                matching score for each expert, ensuring optimal selection for
-                interview boards and enhancing the recruitment and assessment
-                process at DRDO.
-              </p>
-            </div>
-            <Link to="/jobs" className="group relative inline-block">
-              <div className="absolute inset-0 border-4 border-white translate-x-2 translate-y-2 transition-transform duration-200 group-hover:translate-x-0 group-hover:translate-y-0"></div>
-              <button className="relative bg-[#39FF14] text-2xl text-black px-8 py-4 font-bold group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-200">
+    <div className="bg-gradient-to-br from-blue-200 via-indigo-50 to-purple-200 min-h-screen w-full flex items-center justify-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <motion.div
+            className="lg:col-span-7"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+              Expert Matching for
+              <span className="block text-indigo-600">DRDO Interview Boards</span>
+            </h1>
+            <p className="text-xl text-gray-600 mb-8">
+              Revolutionizing the selection process with AI-powered profile matching and expert recommendations.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                to="/jobs"
+                className="bg-indigo-600 text-white hover:bg-indigo-700 px-8 py-3 rounded-full font-semibold text-lg transition-colors duration-300 shadow-lg hover:shadow-xl"
+              >
                 Explore Solution
-              </button>
-            </Link>
-          </div>
+              </Link>
+              <Link
+                to="/demo"
+                className="bg-white text-indigo-600 hover:bg-indigo-50 border-2 border-indigo-600 px-8 py-3 rounded-full font-semibold text-lg transition-colors duration-300 shadow-lg hover:shadow-xl"
+              >
+                Request Demo
+              </Link>
+            </div>
+          </motion.div>
+          
+          <motion.div
+            className="lg:col-span-5"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <div className="bg-white rounded-2xl p-8 shadow-2xl">
+              <div className="grid grid-cols-2 gap-6">
+                {[
+                  { icon: FaRocket, title: "Streamlined Process", description: "Faster and more efficient expert selection" },
+                  { icon: FaUserTie, title: "Perfect Match", description: "AI-driven expert-candidate pairing" },
+                  { icon: FaChartLine, title: "Data Insights", description: "Advanced analytics for better decisions" },
+                  { icon: FaClock, title: "Time Savings", description: "Reduce administrative overhead" }
+                ].map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                    className="flex flex-col items-center text-center"
+                  >
+                    <div className="bg-indigo-100 p-3 rounded-full mb-4">
+                      <item.icon className="text-2xl text-indigo-600" />
+                    </div>
+                    <h3 className="text-gray-800 font-semibold mb-2">{item.title}</h3>
+                    <p className="text-gray-600 text-sm">{item.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>
@@ -55,7 +88,7 @@ const LatestSection = () => {
       lastUpdated: '22 Aug, 2024 17:40 hrs.',
     },
     {
-      text: ' Technical Screening Status - Biotechnology/ Biochemistry',
+      text: 'Technical Screening Status - Biotechnology/ Biochemistry',
       lastUpdated: '21 Aug, 2024 12:05 hrs.',
     },
     {
@@ -68,35 +101,38 @@ const LatestSection = () => {
     },
   ];
   return (
-    <div className="bg-black text-white py-12 px-12">
-      <div className="flex space-x-16 container mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="bg-gray-100 py-16 px-8">
+      <div className="flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-16 container mx-auto">
         <div className="flex justify-start items-start">
           <h2 className="mb-8 flex items-center">
-            <div className="w-12 h-px bg-white mr-4"></div>
-            <span className="text-4xl font-bold uppercase tracking-wider text-white">
+            <div className="w-12 h-px bg-blue-600 mr-4"></div>
+            <span className="text-4xl font-bold uppercase tracking-wider text-blue-600">
               LATEST
             </span>
           </h2>
         </div>
-        <div className="flex-1 bg-black text-white p-6 rounded-lg shadow-lg">
-          <ul className="space-y-2">
+        <div className="flex-1 bg-white p-8 rounded-lg shadow-lg">
+          <ul className="space-y-4">
             {schedules.map((schedule, index) => (
-              <Link
-                to="https://rac.gov.in/"
-                target="_blank"
+              <motion.li
                 key={index}
-                className="flex justify-between items-center border-b-2 text-2xl hover:scale-105 transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <span
-                  className={`${index % 2 === 0 ? 'text-red-400' : 'text-white'
-                    }`}
+                <Link
+                  to="https://rac.gov.in/"
+                  target="_blank"
+                  className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 pb-4 text-lg hover:bg-gray-50 transition-all duration-300 rounded-lg p-4"
                 >
-                  {schedule.text}
-                </span>
-                <span className="text-sm text-gray-600">
-                  Last updated on : {schedule.lastUpdated}
-                </span>
-              </Link>
+                  <span className={`${index % 2 === 0 ? 'text-blue-600' : 'text-purple-600'} font-semibold`}>
+                    {schedule.text}
+                  </span>
+                  <span className="text-sm text-gray-600 mt-2 sm:mt-0">
+                    Last updated on: {schedule.lastUpdated}
+                  </span>
+                </Link>
+              </motion.li>
             ))}
           </ul>
         </div>
@@ -139,21 +175,19 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section className="bg-black text-white py-12 px-12">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-start items-start">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center mb-8"
-          >
-            <div className="w-12 h-px bg-white mr-4"></div>
-            <span className="text-4xl font-bold uppercase tracking-wider text-white">
-              HOW IT WORKS
-            </span>
-          </motion.div>
-        </div>
+    <section className="bg-gradient-to-b from-blue-50 to-purple-50 py-16 px-8">
+      <div className="container mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="flex items-center mb-12"
+        >
+          <div className="w-12 h-px bg-blue-600 mr-4"></div>
+          <span className="text-4xl font-bold uppercase tracking-wider text-blue-600">
+            HOW IT WORKS
+          </span>
+        </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step, index) => (
             <motion.div
@@ -161,14 +195,14 @@ const HowItWorks = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 * (index + 1) }}
-              className="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+              className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
             >
               <div className="p-6 flex flex-col items-center text-center">
-                <div className="text-green-400 mb-4">{step.icon}</div>
-                <h4 className="text-xl font-semibold mb-3 text-green-300">
+                <div className="text-blue-600 mb-4">{step.icon}</div>
+                <h4 className="text-xl font-semibold mb-3 text-blue-800">
                   {step.title}
                 </h4>
-                <p className="text-gray-400">{step.description}</p>
+                <p className="text-gray-600">{step.description}</p>
               </div>
             </motion.div>
           ))}
@@ -214,12 +248,12 @@ const Services = () => {
   ];
 
   return (
-    <section className="bg-black text-white py-12 px-12">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-start items-start mb-8">
+    <section className="bg-gradient-to-b from-purple-50 to-blue-50 py-16 px-8">
+      <div className="container mx-auto">
+        <div className="flex justify-start items-start mb-12">
           <h2 className="flex items-center">
-            <div className="w-12 h-px bg-white mr-4"></div>
-            <span className="text-4xl font-bold uppercase tracking-wider text-white">
+            <div className="w-12 h-px bg-purple-600 mr-4"></div>
+            <span className="text-4xl font-bold uppercase tracking-wider text-purple-600">
               OUR SERVICES
             </span>
           </h2>
@@ -243,7 +277,12 @@ const Services = () => {
           >
             {services.map((service, index) => (
               <SwiperSlide key={index} className="h-auto">
-                <div className="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col h-full transition-transform duration-300 ease-in-out transform border border-gray-700 hover:border-green-500">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col h-full transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl"
+                >
                   <img
                     src={service.imageUrl}
                     alt={service.title}
@@ -251,34 +290,31 @@ const Services = () => {
                   />
                   <div className="p-6 flex-grow flex flex-col justify-between">
                     <div>
-                      <h3 className="text-xl font-semibold mb-3 text-green-400">
+                      <h3 className="text-xl font-semibold mb-3 text-purple-700">
                         {service.title}
                       </h3>
-                      <p className="text-gray-300 text-sm mb-4">
+                      <p className="text-gray-600 text-sm mb-4">
                         {service.description}
                       </p>
                     </div>
                     <div className="flex justify-center items-center">
                       <Link
                         to="/register"
-                        className="group relative inline-block self-start mt-4"
+                        className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg font-bold transition-colors duration-200"
                       >
-                        <div className="absolute inset-0 border-2 border-white translate-x-1 translate-y-1 "></div>
-                        <button className="relative bg-red-600 text-white px-6 py-2 font-bold group-hover:translate-x-1 group-hover:translate-y-1 transition-transform duration-200">
-                          Learn More
-                        </button>
+                        Learn More
                       </Link>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </SwiperSlide>
             ))}
           </Swiper>
 
           <div className="swiper-button-prev-custom absolute top-1/2 left-0 transform -translate-y-1/2 z-10">
-            <button className="w-10 h-10 bg-white rounded-full flex justify-center items-center shadow-lg">
+            <button className="w-10 h-10 bg-white rounded-full flex justify-center items-center shadow-lg text-purple-600 hover:text-purple-800 transition-colors duration-200">
               <svg
-                className="w-5 h-5 text-black"
+                className="w-5 h-5"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -287,9 +323,9 @@ const Services = () => {
             </button>
           </div>
           <div className="swiper-button-next-custom absolute top-1/2 right-0 transform -translate-y-1/2 z-10">
-            <button className="w-10 h-10 bg-white rounded-full flex justify-center items-center shadow-lg">
+            <button className="w-10 h-10 bg-white rounded-full flex justify-center items-center shadow-lg text-purple-600 hover:text-purple-800 transition-colors duration-200">
               <svg
-                className="w-5 h-5 text-black"
+                className="w-5 h-5"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >

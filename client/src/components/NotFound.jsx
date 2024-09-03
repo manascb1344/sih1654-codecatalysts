@@ -8,7 +8,7 @@ const NotFound = () => {
 		window.location.href = '/';
 	}
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-900 via-gray-900 to-black">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-200 via-indigo-50 to-purple-200 ">
       <Card className="w-full max-w-md shadow-2xl">
         <CardHeader>
           <CardTitle className="text-4xl font-bold text-center text-gray-800">404</CardTitle>
