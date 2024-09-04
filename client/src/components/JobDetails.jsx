@@ -14,7 +14,7 @@ const JobDetail = () => {
     window.location.href = '/form';
   }
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-gray-900 to-black text-white p-8 flex justify-center items-center">
+    <div className="min-h-screen bg-gradient-to-br from-blue-200 via-indigo-50 to-purple-200 text-white p-8 flex justify-center items-center">
       <motion.div
         className="max-w-4xl w-full bg-white text-gray-800 rounded-xl shadow-2xl p-10"
         initial={{ opacity: 0, y: 50 }}
