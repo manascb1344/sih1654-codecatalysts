@@ -12,6 +12,8 @@ node_modules
 dist
 dist-ssr
 *.local
+/ai-api/score
+/ai-api/db
 
 # Editor directories and files
 .vscode/*
