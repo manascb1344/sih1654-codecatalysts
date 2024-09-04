@@ -47,7 +47,7 @@ const Register = () => {
   };
 
   useEffect(() => {
-    if (!loading && user) {
+    if (!loading && user && user.role) {
       navigate(`/${user.role.toLowerCase()}`);
     }
   }, [loading, user, navigate, role]);

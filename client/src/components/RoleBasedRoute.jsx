@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Navigate } from 'react-router-dom';
 
-const RoleBasedRoute = ({ requiredRoles, children }) => {
+const RoleBasedRoute = ({ requiredRoles = [], children }) => {
 	const { user, loading } = useAuth();
 	console.log("User", user);
 
@@ -16,7 +16,7 @@ const RoleBasedRoute = ({ requiredRoles, children }) => {
 };
 
 RoleBasedRoute.propTypes = {
-	requiredRoles: PropTypes.arrayOf(PropTypes.string).isRequired,
+	requiredRoles: PropTypes.arrayOf(PropTypes.string),
 	children: PropTypes.node.isRequired,
 };
 
